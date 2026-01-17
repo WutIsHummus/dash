@@ -464,9 +464,9 @@ void RenderBatteryPanel(const AppState& state) {
         widgets::Space(4.0f);
         
         // Voltage
-        widgets::KeyValue("Voltage", nullptr, Colors::Foreground());
-        ImGui::SameLine(ImGui::GetContentRegionAvail().x - 40);
-        ImGui::Text("%.1f V", state.suppBattery.voltage);
+        char voltageStr[16];
+        snprintf(voltageStr, sizeof(voltageStr), "%.1f V", state.suppBattery.voltage);
+        widgets::KeyValue("Voltage", voltageStr, Colors::Foreground());
     }
     ImGui::EndChild();
     ImGui::PopStyleColor();

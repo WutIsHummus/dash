@@ -110,8 +110,11 @@ bool LabeledToggle(const char* label, bool* value) {
 bool LabeledSlider(const char* label, float* value, float minVal, float maxVal, const char* format) {
     ImGui::Text("%s", label);
     
+    char idBuf[128];
+    snprintf(idBuf, sizeof(idBuf), "##%s", label);
+    
     ImGui::PushItemWidth(-1);
-    bool changed = ImGui::SliderFloat(("##" + std::string(label)).c_str(), value, minVal, maxVal, format);
+    bool changed = ImGui::SliderFloat(idBuf, value, minVal, maxVal, format);
     ImGui::PopItemWidth();
     
     return changed;
@@ -120,8 +123,11 @@ bool LabeledSlider(const char* label, float* value, float minVal, float maxVal, 
 bool LabeledInput(const char* label, char* buf, size_t bufSize) {
     ImGui::Text("%s", label);
     
+    char idBuf[128];
+    snprintf(idBuf, sizeof(idBuf), "##%s", label);
+    
     ImGui::PushItemWidth(-1);
-    bool changed = ImGui::InputText(("##" + std::string(label)).c_str(), buf, bufSize);
+    bool changed = ImGui::InputText(idBuf, buf, bufSize);
     ImGui::PopItemWidth();
     
     return changed;
